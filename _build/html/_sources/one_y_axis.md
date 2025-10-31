@@ -9,7 +9,7 @@
 
 4. ***The dictionaries save_config and fill_config are optional and determine if the graph is saved to file and if fill colors are added.***
 
-```'py
+```
 def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
                        markers, figure_size, y_limits,save_config={}, fill_config={},
                        colors=None):
@@ -26,18 +26,20 @@ def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
         markers (list of str): The markers to use for each series.
         figure_size (tuple): The width and height of the figure in inches.
         y_limits (tuple): The minimum and maximum values for the y-axis.
-        save_config (dict, optional): Configuration for saving the file.
-            Keys: 'File Name', 'Folder'. Defaults to {}.
+        save_config (dict, optional): Configuration for saving the file, passed
+            to save_results(). Keys: 'volume', 'chapter', 'file_name'. Defaults to {}.
         fill_config (dict, optional): Configuration for filling areas.
-            Keys: 'Between', 'Start', 'End', 'Colors', 'Labels', 'Alpha'. Defaults to {}.
-        colors (list of str, optional): Colors for each series. If None, uses a default colormap.
+            Keys: 'Between' (list of 1 or 2 indices from y_data_list),
+                  'Start' (int, start index), 'End' (int, end index),
+                  'Colors' (str), 'Labels' (str), 'Alpha' (float).
+            Defaults to {}.
     Raises:
         ValueError: If input lists for series, markers, or colors do not match the number of y-datasets.
     '''
-    import os
-    from matplotlib import pyplot as plt    
+    import numpy as np
+    from matplotlib import pyplot as plt
     num_series = len(y_data_list)
-    # --- Input Validation''''
+    # --- Input Validation ---
     if not all(len(lst) == num_series for lst in [series_labels, markers]):
         raise ValueError("The 'series_labels' and 'markers' lists must have the same length as 'y_data_list'.")
 
@@ -53,7 +55,7 @@ def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
         # Generate a default color cycle if none are provided
         colors = plt.cm.viridis_r(np.linspace(0, 1, num_series))
 
-    # --- Plot Data Series ---
+# --- Plot Data Series ---
     for i in range(num_series):
         plt.plot(x_data, y_data_list[i], label=series_labels[i], marker=markers[i], color=colors[i])
 
@@ -61,17 +63,26 @@ def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
     if fill_config.get('Between'):
         if len(fill_config['Between']) > 2:
             raise ValueError("The 'Between' key in fill_config can contain a maximum of two indices.")
-        
-        # Assuming 'fill_function' is defined and returns necessary parameters
-        start, end, alpha, color, label = fill_function(fill_config, x_data)
-        
+
+
+        # Get values from fill_config dict, providing safe defaults
+        start = fill_config.get('Start', 0)
+        end = fill_config.get('End', len(x_data))
+        alpha = fill_config.get('Alpha', 0.3)
+        color = fill_config.get('Colors', 'gray')
+        label = fill_config.get('Labels', None) # 'None' won't create a legend item
+
         if len(fill_config['Between']) == 2:
             y1_index, y2_index = fill_config['Between']
-            plt.fill_between(x_data[start:end], y_data_list[y1_index][start:end], y_data_list[y2_index][start:end],
+            plt.fill_between(x_data[start:end],
+                             y_data_list[y1_index][start:end],
+                             y_data_list[y2_index][start:end],
                              color=color, alpha=alpha, label=label)
         else:
             y_index = fill_config['Between'][0]
-            plt.fill_between(x_data[start:end], y_data_list[y_index][start:end],
+            # Fills between the series and y=0
+            plt.fill_between(x_data[start:end],
+                             y_data_list[y_index][start:end],
                              color=color, alpha=alpha, label=label)
 
     # --- Final Touches ---
@@ -82,11 +93,10 @@ def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
     plt.tight_layout()
 
     # --- Save Figure ---
-    
-    if save_config:
-        # Assuming 'file_graph' is defined and handles path creation
-        path,file_name = file_graph(save_config,title)
-        full_path=os.path.join(path,file_name)
-        plt.savefig(full_path, dpi=300, bbox_inches='tight')
+    # Calls the save_results function (assumed to be defined)
+    path = save_results(save_config=save_config)
+    if path:
+      plt.savefig(path, dpi=300, bbox_inches='tight')
 
-    plt.show()```
+    plt.show()
+```
