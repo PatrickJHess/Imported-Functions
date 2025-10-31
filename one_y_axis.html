@@ -60,7 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'one_y_axis';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="parent_folder_subfolder is a helper function for saving files created by Financial Python:" href="parent_folder_subfolder.html" />
+    <link rel="next" title="save_results is a helper function that asks users if they wish to save files created by Financial Python." href="save_results.html" />
+    <link rel="prev" title="Functions Imported By the Volume Basic Concepts Of Fixed Income" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,13 +175,13 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Fnctions Imported In the Volume Basic Concepts Of Fixed Income
+                    Functions Imported By the Volume Basic Concepts Of Fixed Income
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="parent_folder_subfolder.html">parent_folder_subfolder is a helper function for saving files created by <em>Financial Python</em>:</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
 </ul>
 
     </div>
@@ -386,86 +387,95 @@ document.write(`
 <li><p><em><strong>The y axis data must be iterable; e.g. list of NumPy arrays.</strong></em></p></li>
 <li><p><em><strong>The dictionaries save_config and fill_config are optional and determine if the graph is saved to file and if fill colors are added.</strong></em></p></li>
 </ol>
-<div class="highlight-'py notranslate"><div class="highlight"><pre><span></span>def one_y_axis(x_data, y_data_list, title, series_labels, xlabel, ylabel,
-                       markers, figure_size, y_limits,save_config={}, fill_config={},
-                       colors=None):
-    &#39;&#39;&#39;
-    Plots data on a single y-axis.
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">one_y_axis</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data_list</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">series_labels</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span>
+                       <span class="n">markers</span><span class="p">,</span> <span class="n">figure_size</span><span class="p">,</span> <span class="n">y_limits</span><span class="p">,</span><span class="n">save_config</span><span class="o">=</span><span class="p">{},</span> <span class="n">fill_config</span><span class="o">=</span><span class="p">{},</span>
+                       <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Plots data on a single y-axis.</span>
 
-    Args:
-        x_data (array-like): Data for the x-axis.
-        y_data_list (list of array-like): A list of datasets for the y-axis.
-        title (str): The title of the graph.
-        series_labels (list of str): Identifiers for each data series in the legend.
-        xlabel (str): The label for the x-axis.
-        ylabel (str): The label for the y-axis.
-        markers (list of str): The markers to use for each series.
-        figure_size (tuple): The width and height of the figure in inches.
-        y_limits (tuple): The minimum and maximum values for the y-axis.
-        save_config (dict, optional): Configuration for saving the file.
-            Keys: &#39;File Name&#39;, &#39;Folder&#39;. Defaults to {}.
-        fill_config (dict, optional): Configuration for filling areas.
-            Keys: &#39;Between&#39;, &#39;Start&#39;, &#39;End&#39;, &#39;Colors&#39;, &#39;Labels&#39;, &#39;Alpha&#39;. Defaults to {}.
-        colors (list of str, optional): Colors for each series. If None, uses a default colormap.
-    Raises:
-        ValueError: If input lists for series, markers, or colors do not match the number of y-datasets.
-    &#39;&#39;&#39;
-    import os
-    from matplotlib import pyplot as plt    
-    num_series = len(y_data_list)
-    # --- Input Validation&#39;&#39;&#39;&#39;
-    if not all(len(lst) == num_series for lst in [series_labels, markers]):
-        raise ValueError(&quot;The &#39;series_labels&#39; and &#39;markers&#39; lists must have the same length as &#39;y_data_list&#39;.&quot;)
+<span class="sd">    Args:</span>
+<span class="sd">        x_data (array-like): Data for the x-axis.</span>
+<span class="sd">        y_data_list (list of array-like): A list of datasets for the y-axis.</span>
+<span class="sd">        title (str): The title of the graph.</span>
+<span class="sd">        series_labels (list of str): Identifiers for each data series in the legend.</span>
+<span class="sd">        xlabel (str): The label for the x-axis.</span>
+<span class="sd">        ylabel (str): The label for the y-axis.</span>
+<span class="sd">        markers (list of str): The markers to use for each series.</span>
+<span class="sd">        figure_size (tuple): The width and height of the figure in inches.</span>
+<span class="sd">        y_limits (tuple): The minimum and maximum values for the y-axis.</span>
+<span class="sd">        save_config (dict, optional): Configuration for saving the file, passed</span>
+<span class="sd">            to save_results(). Keys: &#39;volume&#39;, &#39;chapter&#39;, &#39;file_name&#39;. Defaults to {}.</span>
+<span class="sd">        fill_config (dict, optional): Configuration for filling areas.</span>
+<span class="sd">            Keys: &#39;Between&#39; (list of 1 or 2 indices from y_data_list),</span>
+<span class="sd">                  &#39;Start&#39; (int, start index), &#39;End&#39; (int, end index),</span>
+<span class="sd">                  &#39;Colors&#39; (str), &#39;Labels&#39; (str), &#39;Alpha&#39; (float).</span>
+<span class="sd">            Defaults to {}.</span>
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If input lists for series, markers, or colors do not match the number of y-datasets.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+    <span class="n">num_series</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_data_list</span><span class="p">)</span>
+    <span class="c1"># --- Input Validation ---</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_series</span> <span class="k">for</span> <span class="n">lst</span> <span class="ow">in</span> <span class="p">[</span><span class="n">series_labels</span><span class="p">,</span> <span class="n">markers</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;series_labels&#39; and &#39;markers&#39; lists must have the same length as &#39;y_data_list&#39;.&quot;</span><span class="p">)</span>
 
-    if colors and len(colors) != num_series:
-        raise ValueError(&quot;The &#39;colors&#39; list must have the same length as &#39;y_data_list&#39;.&quot;)
+    <span class="k">if</span> <span class="n">colors</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> <span class="o">!=</span> <span class="n">num_series</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;colors&#39; list must have the same length as &#39;y_data_list&#39;.&quot;</span><span class="p">)</span>
 
-    # --- Plotting Setup ---
-    fig = plt.figure(figsize=figure_size)
-    fig.suptitle(title)
-    plt.style.use(&#39;ggplot&#39;)
+    <span class="c1"># --- Plotting Setup ---</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figure_size</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
 
-    if colors is None:
-        # Generate a default color cycle if none are provided
-        colors = plt.cm.viridis_r(np.linspace(0, 1, num_series))
+    <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Generate a default color cycle if none are provided</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis_r</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">num_series</span><span class="p">))</span>
 
-    # --- Plot Data Series ---
-    for i in range(num_series):
-        plt.plot(x_data, y_data_list[i], label=series_labels[i], marker=markers[i], color=colors[i])
+<span class="c1"># --- Plot Data Series ---</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_series</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">series_labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="n">markers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
-    # --- Handle Fill Area ---
-    if fill_config.get(&#39;Between&#39;):
-        if len(fill_config[&#39;Between&#39;]) &gt; 2:
-            raise ValueError(&quot;The &#39;Between&#39; key in fill_config can contain a maximum of two indices.&quot;)
-        
-        # Assuming &#39;fill_function&#39; is defined and returns necessary parameters
-        start, end, alpha, color, label = fill_function(fill_config, x_data)
-        
-        if len(fill_config[&#39;Between&#39;]) == 2:
-            y1_index, y2_index = fill_config[&#39;Between&#39;]
-            plt.fill_between(x_data[start:end], y_data_list[y1_index][start:end], y_data_list[y2_index][start:end],
-                             color=color, alpha=alpha, label=label)
-        else:
-            y_index = fill_config[&#39;Between&#39;][0]
-            plt.fill_between(x_data[start:end], y_data_list[y_index][start:end],
-                             color=color, alpha=alpha, label=label)
+    <span class="c1"># --- Handle Fill Area ---</span>
+    <span class="k">if</span> <span class="n">fill_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Between&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fill_config</span><span class="p">[</span><span class="s1">&#39;Between&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;Between&#39; key in fill_config can contain a maximum of two indices.&quot;</span><span class="p">)</span>
 
-    # --- Final Touches ---
-    plt.ylim(y_limits)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.legend()
-    plt.tight_layout()
 
-    # --- Save Figure ---
-    
-    if save_config:
-        # Assuming &#39;file_graph&#39; is defined and handles path creation
-        path,file_name = file_graph(save_config,title)
-        full_path=os.path.join(path,file_name)
-        plt.savefig(full_path, dpi=300, bbox_inches=&#39;tight&#39;)
+        <span class="c1"># Get values from fill_config dict, providing safe defaults</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">fill_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">fill_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;End&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_data</span><span class="p">))</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">fill_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Alpha&#39;</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">fill_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Colors&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">fill_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># &#39;None&#39; won&#39;t create a legend item</span>
 
-    plt.show()```
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fill_config</span><span class="p">[</span><span class="s1">&#39;Between&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">y1_index</span><span class="p">,</span> <span class="n">y2_index</span> <span class="o">=</span> <span class="n">fill_config</span><span class="p">[</span><span class="s1">&#39;Between&#39;</span><span class="p">]</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_data</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span>
+                             <span class="n">y_data_list</span><span class="p">[</span><span class="n">y1_index</span><span class="p">][</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span>
+                             <span class="n">y_data_list</span><span class="p">[</span><span class="n">y2_index</span><span class="p">][</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span>
+                             <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y_index</span> <span class="o">=</span> <span class="n">fill_config</span><span class="p">[</span><span class="s1">&#39;Between&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Fills between the series and y=0</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x_data</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span>
+                             <span class="n">y_data_list</span><span class="p">[</span><span class="n">y_index</span><span class="p">][</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">],</span>
+                             <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="c1"># --- Final Touches ---</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">y_limits</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="c1"># --- Save Figure ---</span>
+    <span class="c1"># Calls the save_results function (assumed to be defined)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">save_results</span><span class="p">(</span><span class="n">save_config</span><span class="o">=</span><span class="n">save_config</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -501,13 +511,22 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="parent_folder_subfolder.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">parent_folder_subfolder is a helper function for saving files created by <em>Financial Python</em>:</p>
+        <p class="prev-next-title">Functions Imported By the Volume <em>Basic Concepts Of Fixed Income</em></p>
       </div>
+    </a>
+    <a class="right-next"
+       href="save_results.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
