@@ -6,5 +6,6 @@ root: intro
 chapters:
 - file: one_y_axis
 - file: save_results
+- file: accrued_interest
 - file: create_workbook
 

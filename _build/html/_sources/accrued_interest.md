@@ -1,4 +1,4 @@
-## accrued_interest is a helper function that calculates accrued interes.
+## accrued_interest is a helper function that calculates accrued interest.
 
 
 
