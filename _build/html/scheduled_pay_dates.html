@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Imported Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>scheduled_pay_dates &#8212; Imported Functions</title>
   
   
   
@@ -55,12 +57,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'scheduled_pay_dates';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -92,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -257,7 +256,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fscheduled_pay_dates.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -269,6 +268,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/scheduled_pay_dates.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -319,42 +366,115 @@ document.write(`
 </div>
               
               
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>scheduled_pay_dates</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="scheduled-pay-dates">
+<h1>scheduled_pay_dates<a class="headerlink" href="#scheduled-pay-dates" title="Link to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">settlement</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Generates a chronological list of coupon payment dates from settlement to maturity.</span>
+<span class="sd">    The function calculates dates backward from the maturity date based on the </span>
+<span class="sd">    specified frequency. It handles standard bond market &quot;end-of-month&quot; logic: </span>
+<span class="sd">    if the maturity date is the last day of a month, all preceding coupon payments </span>
+<span class="sd">    are snapped to the last day of their respective months.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        maturity (datetime.date | str): The final maturity date of the bond. </span>
+<span class="sd">            Accepts a date object or a string in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">        settlement (datetime.date | str, optional): The settlement date (start of analysis). </span>
+<span class="sd">            Coupons falling before this date are excluded. Defaults to date.today().</span>
+<span class="sd">        freq (int, optional): The number of coupon payments per year. </span>
+<span class="sd">            Accepted values:</span>
+<span class="sd">            * 1: Annual, 2: Semi-Annual (Default), 4: Quarterly, 12: Monthly</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list[datetime.date]: A list of coupon dates sorted chronologically </span>
+<span class="sd">        (earliest to latest), ending with the maturity date..</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">calendar</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
+
+  <span class="c1">#Validate the data- maturity, coupon, settlement, freq</span>
+  <span class="c1">#maturity</span>
+  <span class="n">maturity</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
+
+  <span class="c1">#settlement</span>
+  <span class="k">if</span> <span class="n">settlement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">settlement</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">settlement</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">settlement</span><span class="p">)</span>
+  <span class="c1">#freq</span>
+  <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">]:</span>
+      <span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### ⚠️  your assigned freq </span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2"> it must be (1, 2, 4, or 12)</span><span class="se">\</span>
+<span class="s2">     </span><span class="se">\n</span><span class="s2">     semi-annual assumed (2).&quot;</span><span class="p">))</span>
+      <span class="n">freq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+  <span class="c1"># Calculate the number of months between each coupon payment.</span>
+  <span class="n">num_months</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">12</span><span class="o">/</span><span class="n">freq</span><span class="p">)</span>
+
+  <span class="c1">#Need to check for month_end</span>
+  <span class="n">is_month_end</span> <span class="o">=</span> <span class="n">maturity</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">maturity</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">maturity</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+  <span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">pay_date</span> <span class="o">=</span> <span class="n">maturity</span>
+
+  <span class="c1">#Loop backward from the maturity date</span>
+
+  <span class="k">while</span> <span class="n">pay_date</span> <span class="o">&gt;</span> <span class="n">settlement</span><span class="p">:</span>
+    <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pay_date</span><span class="p">)</span>
+        
+    <span class="c1"># Decrement by the frequency</span>
+    <span class="n">pay_date</span> <span class="o">-=</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">num_months</span><span class="p">)</span>
+
+    <span class="c1"># Handle Month End Logic</span>
+    <span class="k">if</span> <span class="n">is_month_end</span><span class="p">:</span>
+      <span class="n">last_day</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">pay_date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">pay_date</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">pay_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">pay_date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">pay_date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
+
+  <span class="c1"># Return chronologically (sliced backward)</span>
+  <span class="k">return</span> <span class="n">dates</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+  
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "PatrickJHess/Imported-Functions",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
     }
-  </script>
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
 
               
               

@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Imported Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>adjust_bond_pay_dates &#8212; Imported Functions</title>
   
   
   
@@ -55,12 +57,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'adjust_bond_pay_dates';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -92,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -257,7 +256,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fadjust_bond_pay_dates.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -269,6 +268,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/adjust_bond_pay_dates.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -319,42 +366,88 @@ document.write(`
 </div>
               
               
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>adjust_bond_pay_dates</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="adjust-bond-pay-dates">
+<h1>adjust_bond_pay_dates<a class="headerlink" href="#adjust-bond-pay-dates" title="Link to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">scheduled_date</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the next valid business day (Modified Following convention), </span>
+<span class="sd">    skipping weekends and US holidays (including Good Friday).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        scheduled_date: The scheduled payment date as a datetime or date object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The adjusted payment date as a date object.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        TypeError: If the input is not a datetime.date or datetime.datetime object.</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">holidays</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.easter</span><span class="w"> </span><span class="kn">import</span> <span class="n">easter</span>
+  <span class="c1"># Validate and correct correc scheduled_date</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scheduled_date</span><span class="p">,</span> <span class="p">(</span><span class="n">datetime</span><span class="p">,</span> <span class="n">date</span><span class="p">)):</span>
+      <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Scheduled Date must be a datetime or date object.&quot;</span><span class="p">)</span>
+  <span class="c1"># Convert datetime to date objects</span>
+  <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scheduled_date</span><span class="p">,</span><span class="n">datetime</span><span class="p">)</span> <span class="p">:</span>
+    <span class="n">scheduled_date</span><span class="o">=</span><span class="n">scheduled_date</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+  <span class="c1"># Create the holiday list for the year, including Good Friday</span>
+  <span class="n">us_holidays</span> <span class="o">=</span> <span class="n">holidays</span><span class="o">.</span><span class="n">US</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">scheduled_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+  <span class="n">us_holidays</span><span class="p">[</span><span class="n">easter</span><span class="p">(</span><span class="n">scheduled_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;Good Friday&#39;</span>
+
+  <span class="c1">#set initial value of adjusted_paydate</span>
+  <span class="n">adjusted_pay_date</span><span class="o">=</span><span class="n">scheduled_date</span>
+
+  <span class="c1"># Loop as long as the adjusted_pay date is a weekend OR a holiday</span>
+  <span class="k">while</span> <span class="n">adjusted_pay_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="ow">or</span> <span class="n">adjusted_pay_date</span> <span class="ow">in</span> <span class="n">us_holidays</span><span class="p">:</span>
+    <span class="n">adjusted_pay_date</span> <span class="o">+=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># If the date rolls over into a new year, ensure we have the correct holidays.</span>
+
+    <span class="k">if</span> <span class="n">adjusted_pay_date</span><span class="o">.</span><span class="n">year</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">us_holidays</span><span class="p">:</span>
+      <span class="n">us_holidays</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">holidays</span><span class="o">.</span><span class="n">US</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">adjusted_pay_date</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
+  <span class="k">return</span> <span class="n">adjusted_pay_date</span>  
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "PatrickJHess/Imported-Functions",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
     }
-  </script>
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
 
               
               

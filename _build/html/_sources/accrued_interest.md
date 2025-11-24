@@ -7,56 +7,103 @@
 2. ***Default values are assigned to bond_type and settlement as a dateime.***
 
 ```
-def accrued_interest(maturity, coupon, bond_type='Government', settlement=None, freq=2):
-  """
-  Returns the accrued interest for a bond.
+def accrued_interest(maturity, coupon, day_type='Actual/Actual', settlement=None, freq=2):
+    """
+      Returns the accrued interest for a bond.  Returns the accrued interest for a bond.
 
-  Uses Actual/Actual for Government bonds or 30/360 for other bond types.
-  No accrued interest is calculated if settlement is on a payment date.
+    Args:
+        maturity (datetime): The maturity date of the bond.
+        coupon (float): The annual coupon rate (e.g., 0.05 for 5%).
+        day_types:
+            Actual/Actual, Actual/365, Actual/360. and 30/360.
+        settlement (datetime, optional): The settlement date. Defaults to today.
+        freq (int, optional):
+        Coupon frequency per year: 1 (annual). 2 (semi-annual)
+                                    4 (quarterly), 12 (monthly)
+                                    Defaults to 2. 
+    """
+    from datetime import date
+    import calendar
+    from dateutil.relativedelta import relativedelta
 
-  Args:
-      maturity (datetime): The maturity date of the bond.
-      coupon (float): The annual coupon rate (e.g., 0.05 for 5%).
-      bond_type (str, optional): 'Government' or other. Defaults to 'Government'.
-      settlement (datetime, optional): The settlement date. Defaults to today.
-      freq (int, optional): Coupon frequency per year. Defaults to 2.
-  """
-  from datetime import datetime,date
+    #Validate Data
+    maturity = validate_date(maturity)
+    
+    if settlement is None:
+        settlement = date.today()
+    else:
+        settlement = validate_date(settlement)
 
-  # Normalize maturity and settlement dates to avoid time-of-day issues.
-  if isinstance(maturity, datetime): maturity = maturity.date()
-  if isinstance(settlement, datetime): settlement = settlement.date()
-  if freq not in [1, 2, 4, 12]:
-    feqq=2
+    if freq not in [1, 2, 4, 12]:
+        print(f"⚠️ Warning: Freq {freq} invalid. Assumed Semi-Annual (2).")
+        freq = 2
 
-  #Set maturity, settlement, and coupon dates
-#  maturity=date(maturity.year,maturity.month,maturity.day)
-  if settlement is None:
-    today=date.today()
-    settlement=date(today.year,today.month,today.day)
-  next_date,last_date=next_last_coupon_dates(maturity,settlement=settlement)
-  #Government bonds are actual/actual
-  if bond_type == 'Government':
-      # Actual/Actual convention
-      days_since_last = (settlement - last_date).days
-      days_between = (next_date - last_date).days
-  #other bonds are 30/360
-  else:
-      # 30/360 convention
-      days_since_last = _days_30_360(last_date, settlement)
-      days_between = _days_30_360(last_date, next_date)
+    try:
+        coupon = float(coupon)
+        if coupon < 0: raise ValueError
+    except:
+        raise ValueError("Coupon must be a positive number.")
 
-  # Avoid division by zero if coupon dates are the same
-  if days_between == 0:
-      return 0.0
+    # Find the Correct Coupon Period
+    # Get all the bond's payment dates
+    pay_dates = scheduled_pay_dates(maturity, settlement=settlement, freq=freq)
+ 
+    # Should sorted but check
+    pay_dates.sort()
+    
+    # The first date after the settlement date is the next coupon date
+    next_coupon = None
+    for d in pay_dates:
+        if d >= settlement:
+            next_coupon = d
+            break
+            
+    # Handle case where bond has matured
+    if next_coupon is None:
+        return 0.0
 
-  accrued_ratio = days_since_last / days_between
+    #Calculate Previous Coupon Date
+    num_months = int(12 // freq)
+    prev_coupon = next_coupon - relativedelta(months=num_months)
 
-  # No accrued interest on the actual coupon payment date
-  if settlement == next_date:
-      accrued_ratio = 0
-  #Calculate coupon payment
-  periodic_coupon_payment = coupon / freq
+    # Check for Month End adjustment on the calculated previous date
+    is_next_month_end = next_coupon.day == calendar.monthrange(maturity.year, maturity.month)[1]
+    
+    if is_next_month_end:
+        last_day_of_prev_month = calendar.monthrange(prev_coupon.year, prev_coupon.month)[1]
+        prev_coupon = date(prev_coupon.year, prev_coupon.month, last_day_of_prev_month)
 
-  return periodic_coupon_payment * accrued_ratio
+    # In Python date math, (Settlement - Prev) automatically excludes the end date, 
+    # which correctly represents "days held".
+
+    accrued_value = 0.0
+
+    if day_type == 'Actual/Actual':
+        days_since_last = (settlement - prev_coupon).days
+        days_between = (next_coupon - prev_coupon).days
+        # Formula: Coupon/Freq * (DaysHeld / DaysInPeriod)
+        accrued_value = (coupon / freq) * (days_since_last / days_between)
+
+    elif day_type == '30/360':
+        days_since_last = _days_30_360(prev_coupon, settlement)
+        # Formula: Coupon * (Days360 / 360)
+        accrued_value = coupon * (days_since_last / 360.0)
+
+    elif day_type == 'Actual/360':
+        days_since_last = (settlement - prev_coupon).days
+        accrued_value = coupon * (days_since_last / 360.0)
+
+    elif day_type == 'Actual/365':
+        days_since_last = (settlement - prev_coupon).days
+        accrued_value = coupon * (days_since_last / 365.0)
+        
+    else:
+        # Fallback
+        print(f"⚠️ Warning: Unknown day_type {day_type}. Using Actual/Actual.")
+        days_since_last = (settlement - prev_coupon).days
+        days_between = (next_coupon - prev_coupon).days
+        accrued_value = (coupon / freq) * (days_since_last / days_between)
+
+    return accrued_value
+
 ~~~
