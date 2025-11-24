@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>convert_30_360 retuns day between dates according to the 30/360 rule. &#8212; Imported Functions</title>
+    <title>bond_pay_data &#8212; Imported Functions</title>
   
   
   
@@ -57,11 +57,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'convert_30_360';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bond_pay_dates';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="scheduled_pay_dates" href="scheduled_pay_dates.html" />
-    <link rel="prev" title="create_workbook is a helper function that creates Excel workbooks from DataFrames created by Financial Python." href="create_workbook.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,12 +179,12 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="one_y_axis.html">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_workbook.html">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert_30_360.html">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scheduled_pay_dates.html">scheduled_pay_dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">adjust_bond_pay_dates</a></li>
 </ul>
@@ -258,7 +258,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fconvert_30_360.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fbond_pay_dates.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -288,7 +288,7 @@
       
       
       
-      <li><a href="_sources/convert_30_360.md" target="_blank"
+      <li><a href="_sources/bond_pay_dates.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -370,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>convert_30_360 retuns day between dates according to the 30/360 rule.</h1>
+    <h1>bond_pay_data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,56 +384,74 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="convert-30-360-retuns-day-between-dates-according-to-the-30-360-rule">
-<h1>convert_30_360 retuns day between dates according to the 30/360 rule.<a class="headerlink" href="#convert-30-360-retuns-day-between-dates-according-to-the-30-360-rule" title="Link to this heading">#</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="k">def</span><span class="w"> </span><span class="nf">convert_30_360</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Calculates the number of days between two dates using the 30U/360</span>
-<span class="sd">  (US Bond Basis) convention.</span>
+  <section id="bond-pay-data">
+<h1>bond_pay_data<a class="headerlink" href="#bond-pay-data" title="Link to this heading">#</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bond_pay_data</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">coupon</span><span class="p">,</span><span class="n">settlement</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  Function calculates payment Dates And Amounts.</span>
+<span class="sd">  maturity is a datetime object and coupon is a real number.</span>
+<span class="sd">  Required arguments are maturity and annual coupon.</span>
+<span class="sd">  If provided, the value of settlement is a datetime object;</span>
+<span class="sd">  otherwise defaults to date.today()</span>
+<span class="sd">  freq defaults to semi-annual but accepts freq equal</span>
+<span class="sd">  to 1 for annual, 2 for semi-annal, 4 for quarterly, and 12 for monthly.</span>
+<span class="sd">  The function assumes a par value of 100.</span>
+<span class="sd">  Returns Numpy arrays of dates and amounts.</span>
 
-<span class="sd">  Args:</span>
-<span class="sd">      start_date: The beginning date of the period.</span>
-<span class="sd">      end_date: The ending date of the period.</span>
+<span class="sd">   Raises:</span>
+<span class="sd">      TypeError: If maturity or settlement are not datetime objects.</span>
+<span class="sd">      ValueError: If inputs are not logically valid (e.g., negative coupon,</span>
+<span class="sd">                  maturity before settlement).</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span> 
+  <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span> <span class="k">as</span> <span class="n">md</span>
 
-<span class="sd">  Returns:</span>
-<span class="sd">      The number of days calculated using the 30U/360 convention.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
-  <span class="kn">import</span><span class="w"> </span><span class="nn">calendar</span>
+  <span class="c1">#Validate the data- maturity, coupon, settlement, freq</span>
+  <span class="c1">#maturity</span>
+  <span class="n">maturity</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
 
-  <span class="c1">#Validate data</span>
-  <span class="c1">#start_date</span>
-  <span class="n">start_date</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>  
+  <span class="c1">#coupon</span>
+  <span class="k">try</span><span class="p">:</span>
+      <span class="n">coupon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">coupon</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">coupon</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;coupon rate cannot be negative.&quot;</span><span class="p">)</span>
+  <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;coupon must be a valid number.&quot;</span><span class="p">)</span>
 
-  <span class="c1">#end_date</span>
-  <span class="n">end_date</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
-    
-  <span class="n">d1</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">start_date</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">start_date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">start_date</span><span class="o">.</span><span class="n">year</span>
-  <span class="n">d2</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">end_date</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">end_date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">end_date</span><span class="o">.</span><span class="n">year</span>
+  <span class="c1">#settlement</span>
+  <span class="k">if</span> <span class="n">settlement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">settlement</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">settlement</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">settlement</span><span class="p">)</span>
 
-  <span class="c1"># Helper to check if a date is the last day of February</span>
-  <span class="k">def</span><span class="w"> </span><span class="nf">is_last_day_of_feb</span><span class="p">(</span><span class="n">d</span><span class="p">:</span> <span class="n">date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-      <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="n">month</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="c1">#freq</span>
+  <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">]:</span>
+      <span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### ⚠️  your assigned freq </span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2"> it must be (1, 2, 4, or 12)</span><span class="se">\</span>
+<span class="s2">      </span><span class="se">\n</span><span class="s2">  ###    semi-annual assumed (2).&quot;</span><span class="p">))</span>
+      <span class="n">freq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-  <span class="c1"># --- Apply the 30U/360 rules ---</span>
+  <span class="k">if</span> <span class="n">coupon</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+    <span class="c1">#Adjust maturity for nonsettlement day and return date and face value</span>
+    <span class="n">adjust_maturity</span><span class="o">=</span><span class="n">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">adjust_maturity</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.0</span><span class="p">])</span>
 
-  <span class="c1"># Rule 1: If both dates are the last day of Feb, change end_date&#39;s day to 30.</span>
-  <span class="k">if</span> <span class="n">is_last_day_of_feb</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_last_day_of_feb</span><span class="p">(</span><span class="n">end_date</span><span class="p">):</span>
-      <span class="n">d2</span> <span class="o">=</span> <span class="mi">30</span>
+  <span class="c1">#get scheduled payment dates from helper function scheduled_pay_dates</span>
+  <span class="n">scheduled_dates</span><span class="o">=</span><span class="n">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">settlement</span><span class="p">,</span><span class="n">freq</span><span class="p">)</span>
 
-  <span class="c1"># Rule 2: If start_date is 31 or last day of Feb, change its day to 30.</span>
-  <span class="k">if</span> <span class="n">d1</span> <span class="o">==</span> <span class="mi">31</span> <span class="ow">or</span> <span class="n">is_last_day_of_feb</span><span class="p">(</span><span class="n">start_date</span><span class="p">):</span>
-      <span class="n">d1</span> <span class="o">=</span> <span class="mi">30</span>
+  <span class="c1">#NumPy array of pay_dates: list comprehension with adjust_bond_pay_dates</span>
+  <span class="n">pay_dates</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">scheduled</span><span class="p">)</span> <span class="k">for</span> <span class="n">scheduled</span> <span class="ow">in</span> <span class="n">scheduled_dates</span><span class="p">])</span>
 
-  <span class="c1"># Rule 3: If end_date is 31 AND start_date&#39;s day was changed to 30, change end_date&#39;s day to 30.</span>
-  <span class="k">if</span> <span class="n">d2</span> <span class="o">==</span> <span class="mi">31</span> <span class="ow">and</span> <span class="n">d1</span> <span class="o">==</span> <span class="mi">30</span><span class="p">:</span>
-      <span class="n">d2</span> <span class="o">=</span> <span class="mi">30</span>
+  <span class="c1">#calculate payments</span>
+  <span class="c1">#coupon divided by freq at each date</span>
+  <span class="n">pay</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pay_dates</span><span class="p">),</span><span class="n">coupon</span><span class="o">/</span><span class="n">freq</span><span class="p">)</span>
 
-  <span class="c1"># --- Perform the final calculation ---</span>
-  <span class="n">day_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span> <span class="o">+</span> <span class="p">(</span><span class="n">m2</span> <span class="o">-</span> <span class="n">m1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">30</span> <span class="o">+</span> <span class="p">(</span><span class="n">d2</span> <span class="o">-</span> <span class="n">d1</span><span class="p">)</span>
+  <span class="c1">#Add principal payment as last cash payment</span>
+  <span class="n">pay</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+=</span><span class="mi">100</span>
 
-  <span class="k">return</span> <span class="n">day_count</span>  
+  <span class="k">return</span> <span class="n">pay_dates</span><span class="p">,</span><span class="n">pay</span>
 </pre></div>
 </div>
 </section>
@@ -468,24 +486,6 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="create_workbook.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="scheduled_pay_dates.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">scheduled_pay_dates</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
