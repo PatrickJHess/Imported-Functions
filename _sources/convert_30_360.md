@@ -4,7 +4,8 @@
 
 
 ```
-def convert_30_360(start_date, end_date): 
+
+def convert_30_360(start_date, end_date):
   """
   Calculates the number of days between two dates using the 30U/360
   (US Bond Basis) convention.
@@ -18,6 +19,14 @@ def convert_30_360(start_date, end_date):
   """
   from datetime import date
   import calendar
+
+  #Validate data
+  #start_date
+  start_date=validate_date(start_date)  
+
+  #end_date
+  end_date=validate_date(end_date)
+    
   d1, m1, y1 = start_date.day, start_date.month, start_date.year
   d2, m2, y2 = end_date.day, end_date.month, end_date.year
 
@@ -42,5 +51,5 @@ def convert_30_360(start_date, end_date):
   # --- Perform the final calculation ---
   day_count = (y2 - y1) * 360 + (m2 - m1) * 30 + (d2 - d1)
 
-  return day_count
+  return day_count  
 ```

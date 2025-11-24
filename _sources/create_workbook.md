@@ -39,6 +39,8 @@ def create_workbook(sheet_name, df, save_config={}):
   # Set a default filename if one isn't provided in the config
   if not save_config.get('file_name', False):
       save_config['file_name'] = 'output.xlsx'
+  if '.xlsx' not in save_config.get('file_name', False):
+      save_config['file_name'] = 'output.xlsx'
   path_filename=save_results(save_config=save_config)
   if path_filename is None:
     path_filename=save_config.get('file_name','output.xlsx')
@@ -86,8 +88,8 @@ def create_workbook(sheet_name, df, save_config={}):
     if 'Sheet1' in workbook.sheetnames and sheet_name != 'Sheet1' and len(workbook.sheetnames) > 1:
         del workbook['Sheet1']
     workbook.save(path_filename)
-    display(md(f"###***✅ Successfully wrote and formatted sheet {sheet_name} in {path_filename}***"))
+    display(md(f"### ***✅ Successfully wrote and formatted sheet {sheet_name} in {path_filename}***"))
   except Exception as e:
     display(md(f"### ❌ **ERROR during Excel write/format:**"))
-    print(e)
+    print(e) 
 ~~~ 
