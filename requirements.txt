@@ -1,3 +1,8 @@
-jupyter-book
-matplotlib
 numpy
+pandas
+openpyxl
+pathvalidate
+matplotlib
+python-dateutil
+holidays
+ipynbname

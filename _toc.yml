@@ -9,4 +9,7 @@ chapters:
 - file: accrued_interest
 - file: create_workbook
 - file: convert_30_360
-
+- file: validate_date
+- file: scheduled_pay_dates
+- file: adjusted_bond_paydates
+- file: bond_pay_data
