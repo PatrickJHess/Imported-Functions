@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'scheduled_pay_dates';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="adjust_bond_pay_dates" href="bond_pay_data.html" />
-    <link rel="prev" title="convert_30_360 retuns day between dates according to the 30/360 rule." href="convert_30_360.html" />
+    <link rel="next" title="bond_pay_data helper function" href="bond_pay_data.html" />
+    <link rel="prev" title="validate_date helper function" href="validate_date.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,8 +185,9 @@
 <li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_workbook.html">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_30_360.html">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validate_date.html">validate_date helper function</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">scheduled_pay_dates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">adjust_bond_pay_dates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">bond_pay_data helper function</a></li>
 </ul>
 
     </div>
@@ -386,6 +387,15 @@ document.write(`
                   
   <section id="scheduled-pay-dates">
 <h1>scheduled_pay_dates<a class="headerlink" href="#scheduled-pay-dates" title="Link to this heading">#</a></h1>
+<p><strong>Purpose:</strong></p>
+<p>Generates the scheduled payment dates for bonds, beginning from the settlement date.</p>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p><strong>Input Validation:</strong> The function ensures the integrity of maturity and settlement dates using the validate_date function.</p></li>
+<li><p><strong>Error Handling:</strong> An exception is raised if the maturity or settlement inputs are not date or datetime objects.</p></li>
+<li><p><strong>Calculations:</strong> Payments are calculated by iterating backward from the maturity date.</p></li>
+<li><p><strong>Output:</strong> Returns a chronologically ordered list of scheduled payment dates.</p></li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">settlement</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates a chronological list of coupon payment dates from settlement to maturity.</span>
@@ -406,7 +416,7 @@ document.write(`
 <span class="sd">        list[datetime.date]: A list of coupon dates sorted chronologically </span>
 <span class="sd">        (earliest to latest), ending with the maturity date..</span>
 <span class="sd">  &#39;&#39;&#39;</span>
-  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span>
   <span class="kn">import</span><span class="w"> </span><span class="nn">calendar</span>
   <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
 
@@ -486,12 +496,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="convert_30_360.html"
+       href="validate_date.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">convert_30_360 retuns day between dates according to the 30/360 rule.</p>
+        <p class="prev-next-title">validate_date helper function</p>
       </div>
     </a>
     <a class="right-next"
@@ -499,7 +509,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">adjust_bond_pay_dates</p>
+        <p class="prev-next-title">bond_pay_data helper function</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

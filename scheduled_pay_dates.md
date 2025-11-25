@@ -1,5 +1,15 @@
 ## scheduled_pay_dates
 
+**Purpose:**
+
+Generates the scheduled payment dates for bonds, beginning from the settlement date.
+
+**Behavior:**
+
+* **Input Validation:** The function ensures the integrity of maturity and settlement dates using the validate_date function.  
+* **Error Handling:** An exception is raised if the maturity or settlement inputs are not date or datetime objects.  
+* **Calculations:** Payments are calculated by iterating backward from the maturity date.  
+* **Output:** Returns a chronologically ordered list of scheduled payment dates.
 ```
 def scheduled_pay_dates(maturity,settlement,freq=2):
   '''
@@ -21,7 +31,7 @@ def scheduled_pay_dates(maturity,settlement,freq=2):
         list[datetime.date]: A list of coupon dates sorted chronologically 
         (earliest to latest), ending with the maturity date..
   '''
-  from datetime import datetime,date, timedelta
+  from datetime import datetime,date
   import calendar
   from dateutil.relativedelta import relativedelta
 

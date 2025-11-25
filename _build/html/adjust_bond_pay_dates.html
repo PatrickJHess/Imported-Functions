@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,6 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'adjust_bond_pay_dates';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bond_pay_data helper function" href="bond_pay_data.html" />
+    <link rel="prev" title="scheduled_pay_dates" href="scheduled_pay_dates.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,14 +179,16 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="one_y_axis.html">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_workbook.html">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_30_360.html">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validate_date.html">validate_date helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scheduled_pay_dates.html">scheduled_pay_dates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">adjust_bond_pay_dates</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">adjust_bond_pay_dates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">bond_pay_data helper function</a></li>
 </ul>
 
     </div>
@@ -386,6 +388,15 @@ document.write(`
                   
   <section id="adjust-bond-pay-dates">
 <h1>adjust_bond_pay_dates<a class="headerlink" href="#adjust-bond-pay-dates" title="Link to this heading">#</a></h1>
+<p><strong>Purpose:</strong></p>
+<p>Converts scheduled payment dates to actual payment dates by checking for settlement dates.</p>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p><strong>Input Validation:</strong> Ensures the integrity of scheduled payment dates using the <code class="docutils literal notranslate"><span class="pre">validate_date</span></code> function.</p></li>
+<li><p><strong>Error Handling:</strong> Raises an exception if the scheduled date is not a date or datetime object.</p></li>
+<li><p><strong>Calculations:</strong> Determines the settlement day using the <code class="docutils literal notranslate"><span class="pre">holiday</span></code> library, the <code class="docutils literal notranslate"><span class="pre">easter</span></code> function from <code class="docutils literal notranslate"><span class="pre">relativedelt.easter</span></code>, and the <code class="docutils literal notranslate"><span class="pre">weekday()</span></code> method of the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object.</p></li>
+<li><p><strong>Output:</strong> Returns the actual payment date, adjusting the scheduled date to a settlement day if necessary.</p></li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">scheduled_date</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Calculates the next valid business day (Modified Following convention), </span>
@@ -458,6 +469,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="scheduled_pay_dates.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">scheduled_pay_dates</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bond_pay_data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">bond_pay_data helper function</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

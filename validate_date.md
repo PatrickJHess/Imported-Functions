@@ -1,4 +1,11 @@
-## validate_date
+## validate_date helper function
+
+**Purpose:** This function verifies if a given value is a date or datetime object and converts datetime to date.
+
+**Behavior:**
+
+* If the input is a datetime object, it is converted to a date object (retaining only year, month, and day attributes) to prevent logical errors in date comparisons.  
+* **Raises an exception** if the input variable is not a datetime` or date object.
 
 ```
 def validate_date(datetime_obj):

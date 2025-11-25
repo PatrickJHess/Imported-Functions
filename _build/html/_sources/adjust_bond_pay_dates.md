@@ -1,5 +1,16 @@
 ## adjust_bond_pay_dates
 
+
+**Purpose:**
+
+Converts scheduled payment dates to actual payment dates by checking for settlement dates.
+
+**Behavior:**
+
+* **Input Validation:** Ensures the integrity of scheduled payment dates using the `validate_date` function.  
+* **Error Handling:** Raises an exception if the scheduled date is not a date or datetime object.  
+* **Calculations:** Determines the settlement day using the `holiday` library, the `easter` function from `relativedelt.easter`, and the `weekday()` method of the `datetime` object.  
+* **Output:** Returns the actual payment date, adjusting the scheduled date to a settlement day if necessary.
 ```
 def adjust_bond_pay_dates(scheduled_date):
   """
