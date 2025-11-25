@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>adjust_bond_pay_dates &#8212; Imported Functions</title>
+    <title>bond_pay_data helper function &#8212; Imported Functions</title>
   
   
   
@@ -184,8 +184,9 @@
 <li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_workbook.html">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_30_360.html">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validate_date.html">validate_date helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scheduled_pay_dates.html">scheduled_pay_dates</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">adjust_bond_pay_dates</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">bond_pay_data helper function</a></li>
 </ul>
 
     </div>
@@ -369,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>adjust_bond_pay_dates</h1>
+    <h1>bond_pay_data helper function</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,46 +384,81 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="adjust-bond-pay-dates">
-<h1>adjust_bond_pay_dates<a class="headerlink" href="#adjust-bond-pay-dates" title="Link to this heading">#</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">scheduled_date</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculates the next valid business day (Modified Following convention), </span>
-<span class="sd">    skipping weekends and US holidays (including Good Friday).</span>
+  <section id="bond-pay-data-helper-function">
+<h1>bond_pay_data helper function<a class="headerlink" href="#bond-pay-data-helper-function" title="Link to this heading">#</a></h1>
+<p><strong>Purpose:</strong> To determine actual bond payment dates and corresponding amounts based on scheduled payment dates.</p>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p><strong>Input Validation:</strong> The function ensures the integrity of inputs.</p></li>
+<li><p><strong>Error Handling:</strong> It raises an exception if the provided values for coupon, maturity, settlement, or payment frequency are invalid.</p></li>
+<li><p><strong>Output:</strong> The function returns two NumPy arrays: one containing the actual payment dates and another containing the respective payment amounts.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bond_pay_data</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">coupon</span><span class="p">,</span><span class="n">settlement</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  Function calculates payment Dates And Amounts.</span>
+<span class="sd">  maturity is a datetime object and coupon is a real number.</span>
+<span class="sd">  Required arguments are maturity and annual coupon.</span>
+<span class="sd">  If provided, the value of settlement is a datetime object;</span>
+<span class="sd">  otherwise defaults to date.today()</span>
+<span class="sd">  freq defaults to semi-annual but accepts freq equal</span>
+<span class="sd">  to 1 for annual, 2 for semi-annal, 4 for quarterly, and 12 for monthly.</span>
+<span class="sd">  The function assumes a par value of 100.</span>
+<span class="sd">  Returns Numpy arrays of dates and amounts.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        scheduled_date: The scheduled payment date as a datetime or date object.</span>
+<span class="sd">   Raises:</span>
+<span class="sd">      TypeError: If maturity or settlement are not datetime objects.</span>
+<span class="sd">      ValueError: If inputs are not logically valid (e.g., negative coupon,</span>
+<span class="sd">                  maturity before settlement).</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span> 
+  <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span> <span class="k">as</span> <span class="n">md</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        The adjusted payment date as a date object.</span>
+  <span class="c1">#Validate the data- maturity, coupon, settlement, freq</span>
+  <span class="c1">#maturity</span>
+  <span class="n">maturity</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
 
-<span class="sd">    Raises:</span>
-<span class="sd">        TypeError: If the input is not a datetime.date or datetime.datetime object.</span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="kn">import</span><span class="w"> </span><span class="nn">holidays</span>
-  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
-  <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.easter</span><span class="w"> </span><span class="kn">import</span> <span class="n">easter</span>
-  <span class="c1"># Validate and correct correc scheduled_date</span>
-  <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scheduled_date</span><span class="p">,</span> <span class="p">(</span><span class="n">datetime</span><span class="p">,</span> <span class="n">date</span><span class="p">)):</span>
-      <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Scheduled Date must be a datetime or date object.&quot;</span><span class="p">)</span>
-  <span class="c1"># Convert datetime to date objects</span>
-  <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scheduled_date</span><span class="p">,</span><span class="n">datetime</span><span class="p">)</span> <span class="p">:</span>
-    <span class="n">scheduled_date</span><span class="o">=</span><span class="n">scheduled_date</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
-  <span class="c1"># Create the holiday list for the year, including Good Friday</span>
-  <span class="n">us_holidays</span> <span class="o">=</span> <span class="n">holidays</span><span class="o">.</span><span class="n">US</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">scheduled_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
-  <span class="n">us_holidays</span><span class="p">[</span><span class="n">easter</span><span class="p">(</span><span class="n">scheduled_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;Good Friday&#39;</span>
+  <span class="c1">#coupon</span>
+  <span class="k">try</span><span class="p">:</span>
+      <span class="n">coupon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">coupon</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">coupon</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;coupon rate cannot be negative.&quot;</span><span class="p">)</span>
+  <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;coupon must be a valid number.&quot;</span><span class="p">)</span>
 
-  <span class="c1">#set initial value of adjusted_paydate</span>
-  <span class="n">adjusted_pay_date</span><span class="o">=</span><span class="n">scheduled_date</span>
+  <span class="c1">#settlement</span>
+  <span class="k">if</span> <span class="n">settlement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">settlement</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">settlement</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">settlement</span><span class="p">)</span>
 
-  <span class="c1"># Loop as long as the adjusted_pay date is a weekend OR a holiday</span>
-  <span class="k">while</span> <span class="n">adjusted_pay_date</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="ow">or</span> <span class="n">adjusted_pay_date</span> <span class="ow">in</span> <span class="n">us_holidays</span><span class="p">:</span>
-    <span class="n">adjusted_pay_date</span> <span class="o">+=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="c1"># If the date rolls over into a new year, ensure we have the correct holidays.</span>
+  <span class="c1">#freq</span>
+  <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">]:</span>
+      <span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### ⚠️  your assigned freq </span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2"> it must be (1, 2, 4, or 12)</span><span class="se">\</span>
+<span class="s2">      </span><span class="se">\n</span><span class="s2">  ###    semi-annual assumed (2).&quot;</span><span class="p">))</span>
+      <span class="n">freq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">adjusted_pay_date</span><span class="o">.</span><span class="n">year</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">us_holidays</span><span class="p">:</span>
-      <span class="n">us_holidays</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">holidays</span><span class="o">.</span><span class="n">US</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">adjusted_pay_date</span><span class="o">.</span><span class="n">year</span><span class="p">))</span>
-  <span class="k">return</span> <span class="n">adjusted_pay_date</span>  
+  <span class="k">if</span> <span class="n">coupon</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+    <span class="c1">#Adjust maturity for nonsettlement day and return date and face value</span>
+    <span class="n">adjust_maturity</span><span class="o">=</span><span class="n">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">adjust_maturity</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.0</span><span class="p">])</span>
+
+  <span class="c1">#get scheduled payment dates from helper function scheduled_pay_dates</span>
+  <span class="n">scheduled_dates</span><span class="o">=</span><span class="n">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">settlement</span><span class="p">,</span><span class="n">freq</span><span class="p">)</span>
+
+  <span class="c1">#NumPy array of pay_dates: list comprehension with adjust_bond_pay_dates</span>
+  <span class="n">pay_dates</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">scheduled</span><span class="p">)</span> <span class="k">for</span> <span class="n">scheduled</span> <span class="ow">in</span> <span class="n">scheduled_dates</span><span class="p">])</span>
+
+  <span class="c1">#calculate payments</span>
+  <span class="c1">#coupon divided by freq at each date</span>
+  <span class="n">pay</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pay_dates</span><span class="p">),</span><span class="n">coupon</span><span class="o">/</span><span class="n">freq</span><span class="p">)</span>
+
+  <span class="c1">#Add principal payment as last cash payment</span>
+  <span class="n">pay</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+=</span><span class="mi">100</span>
+
+  <span class="k">return</span> <span class="n">pay_dates</span><span class="p">,</span><span class="n">pay</span>
 </pre></div>
 </div>
 </section>
