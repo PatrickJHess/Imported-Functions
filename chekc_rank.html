@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>scheduled_pay_dates &#8212; Imported Functions</title>
+    <title>check_rank helper function &#8212; Imported Functions</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,11 +57,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'scheduled_pay_dates';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chekc_rank';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="adjust_bond_pay_dates" href="adjust_bond_pay_dates.html" />
-    <link rel="prev" title="validate_date helper function" href="validate_date.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,14 +179,14 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="one_y_axis.html">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_workbook.html">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_30_360.html">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validate_date.html">validate_date helper function</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">scheduled_pay_dates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheduled_pay_dates.html">scheduled_pay_dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adjust_bond_pay_dates.html">adjust_bond_pay_dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">bond_pay_data helper function</a></li>
 </ul>
@@ -260,7 +260,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fscheduled_pay_dates.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fchekc_rank.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -290,7 +290,7 @@
       
       
       
-      <li><a href="_sources/scheduled_pay_dates.md" target="_blank"
+      <li><a href="_sources/chekc_rank.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -372,7 +372,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>scheduled_pay_dates</h1>
+    <h1>check_rank helper function</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,82 +386,43 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="scheduled-pay-dates">
-<h1>scheduled_pay_dates<a class="headerlink" href="#scheduled-pay-dates" title="Link to this heading">#</a></h1>
-<p><strong>Purpose:</strong></p>
-<p>Generates the scheduled payment dates for bonds, beginning from the settlement date.</p>
+  <section id="check-rank-helper-function">
+<h1>check_rank helper function<a class="headerlink" href="#check-rank-helper-function" title="Link to this heading">#</a></h1>
+<p><strong>Purpose:</strong> Checks the full column rank of a matrix.</p>
 <p><strong>Behavior:</strong></p>
 <ul class="simple">
-<li><p><strong>Input Validation:</strong> The function ensures the integrity of maturity and settlement dates using the validate_date function.</p></li>
-<li><p><strong>Error Handling:</strong> An exception is raised if the maturity or settlement inputs are not date or datetime objects.</p></li>
-<li><p><strong>Calculations:</strong> Payments are calculated by iterating backward from the maturity date.</p></li>
-<li><p><strong>Output:</strong> Returns a chronologically ordered list of scheduled payment dates.</p></li>
+<li><p><strong>Input Validation:</strong> The function ensures the integrity of inputs.</p></li>
+<li><p><strong>Error Handling:</strong> It raises an exception if the input a NumPy array.</p></li>
+<li><p><strong>Output:</strong> The function returns truth value of full column rank.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">settlement</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Generates a chronological list of coupon payment dates from settlement to maturity.</span>
-<span class="sd">    The function calculates dates backward from the maturity date based on the </span>
-<span class="sd">    specified frequency. It handles standard bond market &quot;end-of-month&quot; logic: </span>
-<span class="sd">    if the maturity date is the last day of a month, all preceding coupon payments </span>
-<span class="sd">    are snapped to the last day of their respective months.</span>
-<span class="sd">    Args:</span>
-<span class="sd">        maturity (datetime.date | str): The final maturity date of the bond. </span>
-<span class="sd">            Accepts a date object or a string in &#39;YYYY-MM-DD&#39; format.</span>
-<span class="sd">        settlement (datetime.date | str, optional): The settlement date (start of analysis). </span>
-<span class="sd">            Coupons falling before this date are excluded. Defaults to date.today().</span>
-<span class="sd">        freq (int, optional): The number of coupon payments per year. </span>
-<span class="sd">            Accepted values:</span>
-<span class="sd">            * 1: Annual, 2: Semi-Annual (Default), 4: Quarterly, 12: Monthly</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>def check_rank(array):
+  &#39;&#39;&#39;
+  Checks if a matrix has Full Column Rank (all columns are linearly independent).
 
-<span class="sd">    Returns:</span>
-<span class="sd">        list[datetime.date]: A list of coupon dates sorted chronologically </span>
-<span class="sd">        (earliest to latest), ending with the maturity date..</span>
-<span class="sd">  &#39;&#39;&#39;</span>
-  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span>
-  <span class="kn">import</span><span class="w"> </span><span class="nn">calendar</span>
-  <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
+    Args:
+        array (np.ndarray): The matrix to check.
 
-  <span class="c1">#Validate the data- maturity, coupon, settlement, freq</span>
-  <span class="c1">#maturity</span>
-  <span class="n">maturity</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
+    Returns:
+        bool: True if all columns are independent, False if there is redundancy.
+  &#39;&#39;&#39;
+  import numpy as np
+  # Validate input
+  if not isinstance(array,np.ndarray):
+    raise TypeError(&quot;Input must be a NumPy array.&quot;)
 
-  <span class="c1">#settlement</span>
-  <span class="k">if</span> <span class="n">settlement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">settlement</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
-  <span class="k">else</span><span class="p">:</span>
-      <span class="n">settlement</span><span class="o">=</span><span class="n">validate_date</span><span class="p">(</span><span class="n">settlement</span><span class="p">)</span>
-  <span class="c1">#freq</span>
-  <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">]:</span>
-      <span class="n">display</span><span class="p">(</span><span class="n">md</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;### ⚠️  your assigned freq </span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2"> it must be (1, 2, 4, or 12)</span><span class="se">\</span>
-<span class="s2">     </span><span class="se">\n</span><span class="s2">     semi-annual assumed (2).&quot;</span><span class="p">))</span>
-      <span class="n">freq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  # Get number of columns and rows
+  # Full column rank implies that number of rows &gt;= number of columns
+  array_rows,array_columns=array.shape
+  if array_rows&lt;array_columns:
+    return False
 
-  <span class="c1"># Calculate the number of months between each coupon payment.</span>
-  <span class="n">num_months</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">12</span><span class="o">/</span><span class="n">freq</span><span class="p">)</span>
+  # Calculate rank
+  array_rank=np.linalg.matrix_rank(array)
 
-  <span class="c1">#Need to check for month_end</span>
-  <span class="n">is_month_end</span> <span class="o">=</span> <span class="n">maturity</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">maturity</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">maturity</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
-  <span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="n">pay_date</span> <span class="o">=</span> <span class="n">maturity</span>
-
-  <span class="c1">#Loop backward from the maturity date</span>
-
-  <span class="k">while</span> <span class="n">pay_date</span> <span class="o">&gt;</span> <span class="n">settlement</span><span class="p">:</span>
-    <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pay_date</span><span class="p">)</span>
-        
-    <span class="c1"># Decrement by the frequency</span>
-    <span class="n">pay_date</span> <span class="o">-=</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">num_months</span><span class="p">)</span>
-
-    <span class="c1"># Handle Month End Logic</span>
-    <span class="k">if</span> <span class="n">is_month_end</span><span class="p">:</span>
-      <span class="n">last_day</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">pay_date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">pay_date</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-      <span class="n">pay_date</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">pay_date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">pay_date</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">last_day</span><span class="p">)</span>
-
-  <span class="c1"># Return chronologically (sliced backward)</span>
-  <span class="k">return</span> <span class="n">dates</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-  
+  # If is_full_rank  true, least-squares or exact solutions possible
+  is_full_rank=array_columns==array_rank
+  return is_full_rank```
 </pre></div>
 </div>
 </section>
@@ -496,24 +457,6 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="validate_date.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">validate_date helper function</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="adjust_bond_pay_dates.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">adjust_bond_pay_dates</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
