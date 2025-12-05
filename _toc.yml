@@ -13,3 +13,5 @@ chapters:
 - file: scheduled_pay_dates
 - file: adjust_bond_pay_dates
 - file: bond_pay_data
+- file: check_rank
+
