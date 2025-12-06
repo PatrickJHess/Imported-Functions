@@ -55,6 +55,10 @@ def bond_pay_data(maturity,coupon,settlement=None,freq=2):
       \n  ###    semi-annual assumed (2)."))
       freq=int(2)
 
+# check maturity greater than settlement
+  if maturity<=settlement:
+    raise ValueError("maturity must be greater than the settlement date")
+
   if coupon==0:
     #Adjust maturity for nonsettlement day and return date and face value
     adjust_maturity=adjust_bond_pay_dates(maturity)

@@ -11,24 +11,24 @@ Generates the scheduled payment dates for bonds, beginning from the settlement d
 * **Calculations:** Payments are calculated by iterating backward from the maturity date.  
 * **Output:** Returns a chronologically ordered list of scheduled payment dates.
 ```
-def scheduled_pay_dates(maturity,settlement,freq=2):
+ef scheduled_pay_dates(maturity,settlement=None,freq=2):
   '''
     Generates a chronological list of coupon payment dates from settlement to maturity.
-    The function calculates dates backward from the maturity date based on the 
-    specified frequency. It handles standard bond market "end-of-month" logic: 
-    if the maturity date is the last day of a month, all preceding coupon payments 
+    The function calculates dates backward from the maturity date based on the
+    specified frequency. It handles standard bond market "end-of-month" logic:
+    if the maturity date is the last day of a month, all preceding coupon payments
     are snapped to the last day of their respective months.
     Args:
-        maturity (datetime.date | str): The final maturity date of the bond. 
-            Accepts a date object or a string in 'YYYY-MM-DD' format.
-        settlement (datetime.date | str, optional): The settlement date (start of analysis). 
+        maturity (datetime.date): The final maturity date of the bond.
+            Accepts a date object.
+        settlement (datetime.date, optional): The settlement date (start of analysis).
             Coupons falling before this date are excluded. Defaults to date.today().
-        freq (int, optional): The number of coupon payments per year. 
+        freq (int, optional): The number of coupon payments per year.
             Accepted values:
             * 1: Annual, 2: Semi-Annual (Default), 4: Quarterly, 12: Monthly
 
     Returns:
-        list[datetime.date]: A list of coupon dates sorted chronologically 
+        list[datetime.date]: A list of coupon dates sorted chronologically
         (earliest to latest), ending with the maturity date..
   '''
   from datetime import datetime,date
@@ -50,6 +50,10 @@ def scheduled_pay_dates(maturity,settlement,freq=2):
      \n     semi-annual assumed (2)."))
       freq=int(2)
 
+# check maturity greater than settlement
+  if maturity<=settlement:
+    raise ValueError("maturity must be greater than the settlement date")
+
   # Calculate the number of months between each coupon payment.
   num_months=int(12/freq)
 
@@ -63,7 +67,7 @@ def scheduled_pay_dates(maturity,settlement,freq=2):
 
   while pay_date > settlement:
     dates.append(pay_date)
-        
+
     # Decrement by the frequency
     pay_date -= relativedelta(months=num_months)
 

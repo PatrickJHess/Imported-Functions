@@ -399,24 +399,24 @@ document.write(`
 <li><p><strong>Calculations:</strong> Payments are calculated by iterating backward from the maturity date.</p></li>
 <li><p><strong>Output:</strong> Returns a chronologically ordered list of scheduled payment dates.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">settlement</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ef</span> <span class="n">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span><span class="n">settlement</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Generates a chronological list of coupon payment dates from settlement to maturity.</span>
-<span class="sd">    The function calculates dates backward from the maturity date based on the </span>
-<span class="sd">    specified frequency. It handles standard bond market &quot;end-of-month&quot; logic: </span>
-<span class="sd">    if the maturity date is the last day of a month, all preceding coupon payments </span>
+<span class="sd">    The function calculates dates backward from the maturity date based on the</span>
+<span class="sd">    specified frequency. It handles standard bond market &quot;end-of-month&quot; logic:</span>
+<span class="sd">    if the maturity date is the last day of a month, all preceding coupon payments</span>
 <span class="sd">    are snapped to the last day of their respective months.</span>
 <span class="sd">    Args:</span>
-<span class="sd">        maturity (datetime.date | str): The final maturity date of the bond. </span>
-<span class="sd">            Accepts a date object or a string in &#39;YYYY-MM-DD&#39; format.</span>
-<span class="sd">        settlement (datetime.date | str, optional): The settlement date (start of analysis). </span>
+<span class="sd">        maturity (datetime.date): The final maturity date of the bond.</span>
+<span class="sd">            Accepts a date object.</span>
+<span class="sd">        settlement (datetime.date, optional): The settlement date (start of analysis).</span>
 <span class="sd">            Coupons falling before this date are excluded. Defaults to date.today().</span>
-<span class="sd">        freq (int, optional): The number of coupon payments per year. </span>
+<span class="sd">        freq (int, optional): The number of coupon payments per year.</span>
 <span class="sd">            Accepted values:</span>
 <span class="sd">            * 1: Annual, 2: Semi-Annual (Default), 4: Quarterly, 12: Monthly</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        list[datetime.date]: A list of coupon dates sorted chronologically </span>
+<span class="sd">        list[datetime.date]: A list of coupon dates sorted chronologically</span>
 <span class="sd">        (earliest to latest), ending with the maturity date..</span>
 <span class="sd">  &#39;&#39;&#39;</span>
   <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span><span class="n">date</span>
@@ -438,6 +438,10 @@ document.write(`
 <span class="s2">     </span><span class="se">\n</span><span class="s2">     semi-annual assumed (2).&quot;</span><span class="p">))</span>
       <span class="n">freq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
+<span class="c1"># check maturity greater than settlement</span>
+  <span class="k">if</span> <span class="n">maturity</span><span class="o">&lt;=</span><span class="n">settlement</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;maturity must be greater than the settlement date&quot;</span><span class="p">)</span>
+
   <span class="c1"># Calculate the number of months between each coupon payment.</span>
   <span class="n">num_months</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">12</span><span class="o">/</span><span class="n">freq</span><span class="p">)</span>
 
@@ -451,7 +455,7 @@ document.write(`
 
   <span class="k">while</span> <span class="n">pay_date</span> <span class="o">&gt;</span> <span class="n">settlement</span><span class="p">:</span>
     <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pay_date</span><span class="p">)</span>
-        
+
     <span class="c1"># Decrement by the frequency</span>
     <span class="n">pay_date</span> <span class="o">-=</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">num_months</span><span class="p">)</span>
 
