@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>check_rank helper function &#8212; Imported Functions</title>
+    <title>create_bond_payoff helper function &#8212; Imported Functions</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -57,9 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chekc_rank';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'create_payoff_matrix';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="check_rank helper function" href="check_rank.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +178,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="one_y_axis.html">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
@@ -189,6 +188,8 @@
 <li class="toctree-l1"><a class="reference internal" href="scheduled_pay_dates.html">scheduled_pay_dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adjust_bond_pay_dates.html">adjust_bond_pay_dates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">bond_pay_data helper function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check_rank.html">check_rank helper function</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">create_bond_payoff helper function</a></li>
 </ul>
 
     </div>
@@ -260,7 +261,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fchekc_rank.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fcreate_payoff_matrix.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -290,7 +291,7 @@
       
       
       
-      <li><a href="_sources/chekc_rank.md" target="_blank"
+      <li><a href="_sources/create_payoff_matrix.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -372,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>check_rank helper function</h1>
+    <h1>create_bond_payoff helper function</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,43 +387,114 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="check-rank-helper-function">
-<h1>check_rank helper function<a class="headerlink" href="#check-rank-helper-function" title="Link to this heading">#</a></h1>
-<p><strong>Purpose:</strong> Checks the full column rank of a matrix.</p>
+  <section id="create-bond-payoff-helper-function">
+<h1>create_bond_payoff helper function<a class="headerlink" href="#create-bond-payoff-helper-function" title="Link to this heading">#</a></h1>
+<p><strong>Purpose:</strong> Creates a payoff matrix from a DataFrame of bonds need for bootstrapping term structure</p>
 <p><strong>Behavior:</strong></p>
 <ul class="simple">
 <li><p><strong>Input Validation:</strong> The function ensures the integrity of inputs.</p></li>
-<li><p><strong>Error Handling:</strong> It raises an exception if the input a NumPy array.</p></li>
-<li><p><strong>Output:</strong> The function returns truth value of full column rank.</p></li>
+<li><p><strong>Error Handling:</strong> It raises an exception if fpr wrong data inputs.</p></li>
+<li><p><strong>Output:</strong> the payoff matrix and the dates for the columns</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>def check_rank(array):
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>def create_payoff_matrix(df_bonds,settlement=None,freq=2):
   &#39;&#39;&#39;
-  Checks if a matrix has Full Column Rank (all columns are linearly independent).
+    Constructs a cash flow matrix (Payoff Matrix) for a portfolio of bonds.
 
-    Args:
-        array (np.ndarray): The matrix to check.
+    This function iterates through a DataFrame of bonds, calculates their individual
+    cash flows based on maturity and coupon rate, and aligns them into a matrix
+    where rows represent bonds and columns represent unique payment dates.
 
-    Returns:
-        bool: True if all columns are independent, False if there is redundancy.
+    Parameters
+    ----------
+    df_bonds : pd.DataFrame
+        A DataFrame containing bond data.
+        - Index: Maturity dates (datetime-like).
+        - Column &#39;Coupon&#39;: Annual coupon rate (e.g., 5.0 for 5%).
+    settlement : datetime-like, optional
+        The settlement date for calculation. Cash flows before this date are ignored.
+        Defaults to date.today() if None.
+    freq : int, optional
+        Payment frequency per year. Must be 1 (Annual), 2 (Semi-annual),
+        4 (Quarterly), or 12 (Monthly). Defaults to 2.
+
+    Returns
+    -------
+    tuple (np.ndarray, list)
+        - np.ndarray: A 2D array of floats (Rows=Bonds, Cols=Dates).
+        - list: A sorted list of datetime.date objects corresponding to the matrix columns.
+
+    Raises
+    ------
+    ValueError
+        - If inputs are invalid type.
+        - If a generated row contains only zeros (maturity &lt; settlement).
+        - If a duplicate bond (row) is detected.
+        - If the final matrix is not full rank (linear dependency).
+
+
   &#39;&#39;&#39;
   import numpy as np
-  # Validate input
-  if not isinstance(array,np.ndarray):
-    raise TypeError(&quot;Input must be a NumPy array.&quot;)
-
-  # Get number of columns and rows
-  # Full column rank implies that number of rows &gt;= number of columns
-  array_rows,array_columns=array.shape
-  if array_rows&lt;array_columns:
-    return False
-
-  # Calculate rank
-  array_rank=np.linalg.matrix_rank(array)
+  import pandas as pd
+  from datetime import date
+  import warnings
 
 
-  # If is_full_rank  true, least-squares or exact solutions possible
-  is_full_rank=array_columns==array_rank
-  return is_full_rank```
+  # Validate inputs
+
+  # df_bonds
+  if not isinstance((df_bonds),pd.DataFrame):
+     raise ValueError(&quot;df_bonds must be a Pandas DataFrame&quot;)
+
+  #settlement
+  if settlement is None:
+      settlement = date.today()
+  else:
+      settlement=validate_date(settlement)
+
+  #freq
+  if int(freq) not in [1,2,4,12]:
+      print(f&quot;⚠️  your assigned {freq} to freq. It must be (1, 2, 4, or 12)\
+      \n      semi-annual assumed (2).&quot;)
+      freq=int(2)
+
+  # Initialize the list payment_rows
+  payment_rows=[]
+
+  # Get payment data for the bonds
+  # Only consider bonds with maturities greater than the settlement date
+  payment_data=[bond_pay_data(maturity,coupon,settlement,freq=freq) for maturity,coupon in
+               zip(df_bonds.index,df_bonds[&#39;Coupon&#39;])if maturity.date()&gt;=settlement]
+
+  # Calculate the unique payment dates for bond with maturities &gt;= settlement
+  # create_unique_function takes the list or arrays and returns a chronololgically
+  # sorted dictionary with keys equal to unique dates and values column location
+  column_mapping=unique_pay_dates(payment_data)
+
+  # Iterate through payment_data list
+  for data in payment_data:
+
+    # initialize an array of zeros with length equal unique dates length
+    this_row=np.zeros(len(column_mapping))
+
+    # Use dictionary get method to determine the column number of the bond&#39;s payments
+    payment_columns=[column_mapping.get(pay_date) for pay_date in data[0]]
+    for columns,payment in zip(payment_columns,data[1]):
+     this_row[columns]=payment
+
+    # Check if row is zero
+    if np.all(np.isclose(this_row,0)):
+      if payment_rows:
+        last_valid=payment_rows[-1]
+      else:
+        last_valid=None
+      raise ValueError(f&#39;The row has no payment amounts {new_row}, last valid row {last_valid}&#39;)
+    payment_rows.append(this_row)
+
+  # Check the rank before
+  if not check_rank(np.array(payment_rows)):
+    raise ValueError(&quot;The payoff matrix is not full rank; check the DataFrame&quot;)
+
+  return np.array(payment_rows),list(column_mapping.keys())``
 </pre></div>
 </div>
 </section>
@@ -457,6 +529,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="check_rank.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">check_rank helper function</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
