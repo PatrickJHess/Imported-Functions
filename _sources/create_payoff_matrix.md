@@ -1,4 +1,4 @@
-## create_bond_payoff helper function
+## create_payoff_matrix helper function
 
 **Purpose:** Creates a payoff matrix from a DataFrame of bonds need for bootstrapping term structure
 
