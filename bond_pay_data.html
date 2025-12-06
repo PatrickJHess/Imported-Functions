@@ -444,6 +444,10 @@ document.write(`
 <span class="s2">      </span><span class="se">\n</span><span class="s2">  ###    semi-annual assumed (2).&quot;</span><span class="p">))</span>
       <span class="n">freq</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
+<span class="c1"># check maturity greater than settlement</span>
+  <span class="k">if</span> <span class="n">maturity</span><span class="o">&lt;=</span><span class="n">settlement</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;maturity must be greater than the settlement date&quot;</span><span class="p">)</span>
+
   <span class="k">if</span> <span class="n">coupon</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
     <span class="c1">#Adjust maturity for nonsettlement day and return date and face value</span>
     <span class="n">adjust_maturity</span><span class="o">=</span><span class="n">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
