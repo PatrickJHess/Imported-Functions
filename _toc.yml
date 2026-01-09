@@ -15,4 +15,8 @@ chapters:
 - file: bond_pay_data
 - file: check_rank
 - file: create_payoff_matrix
+- file: bond_pv
+- file: single_newton_raphson
+- file: calc_ytm
+
 

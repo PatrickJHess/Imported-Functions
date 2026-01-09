@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Functions Imported By the Volume Basic Concepts Of Fixed Income &#8212; Imported Functions</title>
+    <title>bond_pv helper function &#8212; Imported Functions</title>
   
   
   
@@ -57,10 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bond_pv';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="one-y-axis is a helper function for plotting graphs created by Financial Python." href="one_y_axis.html" />
+    <link rel="next" title="single_newton_raphson helper function" href="single_newton_raphson.html" />
+    <link rel="prev" title="create_payoff_matrix helper function" href="create_payoff_matrix.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -123,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -143,7 +142,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -174,13 +173,13 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Functions Imported By the Volume Basic Concepts Of Fixed Income
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="one_y_axis.html">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
@@ -192,7 +191,7 @@
 <li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">bond_pay_data helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="check_rank.html">check_rank helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_payoff_matrix.html">create_payoff_matrix helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bond_pv.html">bond_pv helper function</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">bond_pv helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="single_newton_raphson.html">single_newton_raphson helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calc_ytm.html">calc_ytm helper function</a></li>
 </ul>
@@ -266,7 +265,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fbond_pv.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -296,7 +295,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/bond_pv.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -378,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Functions Imported By the Volume Basic Concepts Of Fixed Income</h1>
+    <h1>bond_pv helper function</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,25 +391,111 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="functions-imported-by-the-volume-basic-concepts-of-fixed-income">
-<h1>Functions Imported By the Volume <em>Basic Concepts Of Fixed Income</em><a class="headerlink" href="#functions-imported-by-the-volume-basic-concepts-of-fixed-income" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="one_y_axis.html">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="create_workbook.html">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="convert_30_360.html">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="validate_date.html">validate_date helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scheduled_pay_dates.html">scheduled_pay_dates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="adjust_bond_pay_dates.html">adjust_bond_pay_dates</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bond_pay_data.html">bond_pay_data helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="check_rank.html">check_rank helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="create_payoff_matrix.html">create_payoff_matrix helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bond_pv.html">bond_pv helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="single_newton_raphson.html">single_newton_raphson helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calc_ytm.html">calc_ytm helper function</a></li>
+  <section id="bond-pv-helper-function">
+<h1>bond_pv helper function<a class="headerlink" href="#bond-pv-helper-function" title="Link to this heading">#</a></h1>
+<p><strong>Purpose:</strong> Calculates the present value of a bond multiple or single discount rates.</p>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p><strong>Input Validation:</strong> The function ensures the integrity of inputs.</p></li>
+<li><p><strong>Error Handling:</strong> It raises an exception if rates, payment daes or amounts, or settlement are invalid.</p></li>
+<li><p><strong>Output:</strong> Returns the present value, first and second derivatives with respect to discount rates</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bond_pv</span><span class="p">(</span><span class="n">rates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">settlement</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;Calculates a bond&#39;s present value, and its first and second derivatives.</span>
+
+<span class="sd">  This function prices a bond by discounting its future cash flows using a</span>
+<span class="sd">  provided set of continuously compounded interest rates. It also computes the</span>
+<span class="sd">  first and second derivatives of the present value with respect to the rates,</span>
+<span class="sd">  which are fundamental inputs for calculating risk measures like dollar duration</span>
+<span class="sd">  and convexity.</span>
+
+<span class="sd">  The time to payment is calculated using an Actual/365.25 day-count convention.</span>
+<span class="sd">  If the provided array of rates is shorter than the number of payments, the</span>
+<span class="sd">  last rate is used to extrapolate for all subsequent payments.</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">      rates (float or np.ndarray): The continuously compounded discount rate or an</span>
+<span class="sd">          array of rates. If a single float is provided, it&#39;s applied to all</span>
+<span class="sd">          cash flows.</span>
+<span class="sd">      data_dict (dict): A dictionary that must contain the bond&#39;s payment data.</span>
+<span class="sd">          It can optionally specify the settlement date.</span>
+<span class="sd">          - &#39;pay_data&#39; (tuple): A required tuple of two NumPy arrays:</span>
+<span class="sd">            (payment_dates, payment_amounts).</span>
+<span class="sd">          - &#39;settlement&#39; (datetime.date): An optional valuation date.</span>
+<span class="sd">      settlement (datetime.date, optional): The valuation date. This argument is</span>
+<span class="sd">          used if a settlement date is not found in `data_dict`. It defaults</span>
+<span class="sd">          to the current system date if not provided elsewhere.</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">      tuple: A tuple of three floats:</span>
+<span class="sd">      - Present Value: The bond&#39;s price,.</span>
+<span class="sd">      - First Derivative: The derivative of PV with respect to rates. This is related</span>
+<span class="sd">        to dollar duration.</span>
+<span class="sd">      - Second Derivative: The second derivative of PV with respect to rates.</span>
+<span class="sd">        This is related to the bond&#39;s dollar convexity.</span>
+
+<span class="sd">  Raises:</span>
+<span class="sd">      TypeError: If &#39;pay_data&#39; is not a tuple of two NumPy arrays or if</span>
+<span class="sd">                 &#39;rates&#39; is not numeric.</span>
+<span class="sd">      ValueError: If the dates and payments arrays within &#39;pay_data&#39; are not</span>
+<span class="sd">                  the same size.</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+  <span class="c1"># Import necessary libraries</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
+
+  <span class="c1"># if settlement in dictionary otherwise value passed ir no settlement None</span>
+  <span class="n">settlement</span><span class="o">=</span><span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;settlement&#39;</span><span class="p">,</span><span class="n">settlement</span><span class="p">)</span>
+  <span class="c1"># settlement date is today if it&#39;s not provided</span>
+  <span class="k">if</span> <span class="n">settlement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">settlement</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+  <span class="n">pay_data</span><span class="o">=</span><span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;pay_data&#39;</span><span class="p">]</span>
+
+<span class="c1"># Validate the structure and types within pay_data</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pay_data</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">pay_data</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;pay_data&#39; must be a tuple of (dates_array, payments_array).&quot;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">pay_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pay_data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+      <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Both items in &#39;pay_data&#39; must be NumPy arrays.&quot;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">pay_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="n">pay_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dates and payments arrays in &#39;pay_data&#39; must have the same size.&quot;</span><span class="p">)</span>
+  <span class="c1"># --- Input Validation ---</span>
+    <span class="c1"># Convert rates to a NumPy array and validate</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">rates</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+      <span class="n">rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">rates</span><span class="p">])</span>
+  <span class="k">else</span><span class="p">:</span>
+      <span class="n">rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">rates</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;&#39;rates&#39; must contain only numeric data.&quot;</span><span class="p">)</span>
+
+  <span class="c1"># Calculate the time to each payment in years from the settlement date</span>
+  <span class="c1"># Convert dates to NumPy datetime64, float difference convert to years</span>
+  <span class="n">pay_dates</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pay_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;datetime64[D]&#39;</span><span class="p">)</span>
+             <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="n">settlement</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">/</span><span class="mf">365.25</span>
+
+  <span class="c1"># Ensure there is a discount rate for every payment date</span>
+  <span class="k">if</span> <span class="n">rates</span><span class="o">.</span><span class="n">size</span><span class="o">&lt;</span><span class="n">pay_dates</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+  <span class="c1">#If single rate create an array of that single rate</span>
+    <span class="k">if</span> <span class="n">rates</span><span class="o">.</span><span class="n">size</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+      <span class="n">rates</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">pay_dates</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">rates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+   <span class="c1">#If more than one but less then size of pay dates</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">rates</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rates</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">pay_dates</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="n">rates</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">rates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+  <span class="c1">#Calculate pv of each payment and sum to get value</span>
+  <span class="n">pv_payments</span><span class="o">=</span><span class="n">pay_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">rates</span><span class="o">*</span><span class="n">pay_dates</span><span class="p">)</span>
+  <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pv_payments</span><span class="p">)</span>
+
+  <span class="c1">#Derivatives for each payment</span>
+  <span class="n">derivatives_array</span><span class="o">=-</span><span class="n">pay_dates</span><span class="o">*</span><span class="n">pv_payments</span>
+
+  <span class="c1">#First derivative</span>
+  <span class="n">first_derivative</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">derivatives_array</span><span class="p">)</span>
+
+  <span class="c1">#Second derivative</span>
+  <span class="n">second_derivative</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="n">pay_dates</span><span class="o">*</span><span class="n">derivatives_array</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">value</span><span class="p">,</span><span class="n">first_derivative</span><span class="p">,</span><span class="n">second_derivative</span>
+</pre></div>
 </div>
 </section>
 
@@ -444,12 +529,21 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="create_payoff_matrix.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">create_payoff_matrix helper function</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="one_y_axis.html"
+       href="single_newton_raphson.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</p>
+        <p class="prev-next-title">single_newton_raphson helper function</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
