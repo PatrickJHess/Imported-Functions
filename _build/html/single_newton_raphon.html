@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Imported Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>single_newton_raphson helper function &#8212; Imported Functions</title>
   
   
   
@@ -30,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -55,12 +57,9 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'single_newton_raphon';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -92,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -195,8 +194,6 @@
 <li class="toctree-l1"><a class="reference internal" href="bond_pv.html">bond_pv helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="single_newton_raphson.html">single_newton_raphson helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calc_ytm.html">calc_ytm helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calc_duration.html">calc_duration helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calc_convexity.html">calc_convexity helper function</a></li>
 </ul>
 
     </div>
@@ -268,7 +265,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Fsingle_newton_raphon.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -280,6 +277,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/single_newton_raphon.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -330,42 +375,102 @@ document.write(`
 </div>
               
               
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>single_newton_raphson helper function</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="single-newton-raphson-helper-function">
+<h1>single_newton_raphson helper function<a class="headerlink" href="#single-newton-raphson-helper-function" title="Link to this heading">#</a></h1>
+<p><strong>Purpose:</strong> Use the Newton-Raphson method to find root of a function</p>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p><strong>Input Validation:</strong> The function ensures the integrity of inputs.</p></li>
+<li><p><strong>Error Handling:</strong> If function not specified or derivative is equivalent to zero</p></li>
+<li><p><strong>Output:</strong> Returns the numer of guesses and root of the function</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">single_newton_raphson</span><span class="p">(</span><span class="n">target_value</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num_attempts</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                          <span class="n">guess</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds a root of a function using the Newton-Raphson method.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        target_value (float): The target value we want the function to return.</span>
+<span class="sd">        function (callable): A function that takes a guess and optional data,</span>
+<span class="sd">                             and returns a tuple (value, derivative).</span>
+<span class="sd">        data (any, optional): Additional data to pass to the function.</span>
+<span class="sd">        num_attempts (int): Maximum number of iterations.</span>
+<span class="sd">        guess (float): Initial guess for the root.</span>
+<span class="sd">        tolerance (float): The desired precision of the result.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (number_of_guesses, final_guess, final_value)</span>
+<span class="sd">        str: An error message if no solution is found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;function must be specified&quot;</span><span class="p">)</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="n">num_guesses</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">num_guesses</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_attempts</span><span class="p">):</span>
+       <span class="c1">#Ignore second derivative</span>
+       <span class="n">value</span><span class="p">,</span> <span class="n">derivative</span><span class="p">,</span><span class="o">*</span><span class="n">other</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+        <span class="c1"># Calculate how far off we are from the target</span>
+       <span class="n">error</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="n">target_value</span>
+
+        <span class="c1"># Check for convergence</span>
+       <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">tolerance</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">num_guesses</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">value</span>
+
+        <span class="c1"># Avoid division by zero</span>
+       <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">derivative</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No solution found: derivative is zero.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">num_guesses</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">value</span>
+
+        <span class="c1"># Newton-Raphson update step</span>
+        <span class="c1"># We use value - target_value (the error) as f(x)</span>
+        <span class="c1"># The standard formula is x_n+1 = x_n - f(x_n)/f&#39;(x_n)</span>
+       <span class="n">guess</span> <span class="o">=</span> <span class="n">guess</span> <span class="o">-</span> <span class="n">error</span> <span class="o">/</span> <span class="n">derivative</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No solution found after </span><span class="si">{}</span><span class="s2"> attempts.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_attempts</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">num_guesses</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">value</span>
+</pre></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "PatrickJHess/Imported-Functions",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
     }
-  </script>
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
 
               
               

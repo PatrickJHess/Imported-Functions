@@ -18,5 +18,6 @@ chapters:
 - file: bond_pv
 - file: single_newton_raphson
 - file: calc_ytm
-
+- file: calc_duration
+- file: calc_convexity
 
