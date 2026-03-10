@@ -20,4 +20,6 @@ chapters:
 - file: calc_ytm
 - file: calc_duration
 - file: calc_convexity
+- file: FEDInvest
+
 

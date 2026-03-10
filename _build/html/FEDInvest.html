@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>accrued_interest is a helper function that calculates accrued interest. &#8212; Imported Functions</title>
+    <title>FEDInvest is a helper function that gets daily price data for U.S. Treasury Securities. &#8212; Imported Functions</title>
   
   
   
@@ -57,12 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'accrued_interest';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'FEDInvest';</script>
     <script src="_static/open_new_tab.js?v=408d5d40"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="create_workbook is a helper function that creates Excel workbooks from DataFrames created by Financial Python." href="create_workbook.html" />
-    <link rel="prev" title="save_results is a helper function that asks users if they wish to save files created by Financial Python." href="save_results.html" />
+    <link rel="prev" title="calc_convexity helper function" href="calc_convexity.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,7 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="one_y_axis.html">one-y-axis is a helper function for plotting graphs created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="save_results.html">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">accrued_interest is a helper function that calculates accrued interest.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accrued_interest.html">accrued_interest is a helper function that calculates accrued interest.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="create_workbook.html">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_30_360.html">convert_30_360 retuns day between dates according to the 30/360 rule.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="validate_date.html">validate_date helper function</a></li>
@@ -197,7 +196,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calc_ytm.html">calc_ytm helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calc_duration.html">calc_duration helper function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calc_convexity.html">calc_convexity helper function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="FEDInvest.html">FEDInvest is a helper function that gets daily price data for U.S. Treasury Securities.</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">FEDInvest is a helper function that gets daily price data for U.S. Treasury Securities.</a></li>
 </ul>
 
     </div>
@@ -269,7 +268,7 @@
       
       
       
-      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2Faccrued_interest.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/PatrickJHess/Imported-Functions/issues/new?title=Issue%20on%20page%20%2FFEDInvest.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -299,7 +298,7 @@
       
       
       
-      <li><a href="_sources/accrued_interest.md" target="_blank"
+      <li><a href="_sources/FEDInvest.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +380,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>accrued_interest is a helper function that calculates accrued interest.</h1>
+    <h1>FEDInvest is a helper function that gets daily price data for U.S. Treasury Securities.</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -395,112 +394,84 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="accrued-interest-is-a-helper-function-that-calculates-accrued-interest">
-<h1>accrued_interest is a helper function that calculates accrued interest.<a class="headerlink" href="#accrued-interest-is-a-helper-function-that-calculates-accrued-interest" title="Link to this heading">#</a></h1>
+  <section id="fedinvest-is-a-helper-function-that-gets-daily-price-data-for-u-s-treasury-securities">
+<h1>FEDInvest is a helper function that gets daily price data for U.S. Treasury Securities.<a class="headerlink" href="#fedinvest-is-a-helper-function-that-gets-daily-price-data-for-u-s-treasury-securities" title="Link to this heading">#</a></h1>
 <ol class="arabic simple">
-<li><p><em><strong>The requied arguments are maturity as datetime and coupon</strong></em></p></li>
-<li><p><em><strong>Default values are assigned to bond_type and settlement as a dateime.</strong></em></p></li>
+<li><p><em><strong>Sole argument is a date as dateimte or date.</strong></em></p></li>
+<li><p><em><strong>Returns DataFrame, date of prices, and settlement date.</strong></em></p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">accrued_interest</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span> <span class="n">coupon</span><span class="p">,</span> <span class="n">day_type</span><span class="o">=</span><span class="s1">&#39;Actual/Actual&#39;</span><span class="p">,</span> <span class="n">settlement</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Returns the accrued interest for a bond.  Returns the accrued interest for a bond.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">FEDInvest</span><span class="p">(</span><span class="n">price_date</span><span class="p">):</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches historical security prices from the FedInvest portal.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        maturity (datetime): The maturity date of the bond.</span>
-<span class="sd">        coupon (float): The annual coupon rate (e.g., 0.05 for 5%).</span>
-<span class="sd">        day_types:</span>
-<span class="sd">            Actual/Actual, Actual/365, Actual/360. and 30/360.</span>
-<span class="sd">        settlement (datetime, optional): The settlement date. Defaults to today.</span>
-<span class="sd">        freq (int, optional):</span>
-<span class="sd">        Coupon frequency per year: 1 (annual). 2 (semi-annual)</span>
-<span class="sd">                                    4 (quarterly), 12 (monthly)</span>
-<span class="sd">                                    Defaults to 2. </span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">date</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">calendar</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
+<span class="sd">        price_date (datetime.date): The date for which to retrieve prices.</span>
+<span class="sd">            Note: Current day is typically available after 1:00 PM ET on business days.</span>
 
-    <span class="c1">#Validate Data</span>
-    <span class="n">maturity</span> <span class="o">=</span> <span class="n">validate_date</span><span class="p">(</span><span class="n">maturity</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="n">settlement</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">settlement</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">settlement</span> <span class="o">=</span> <span class="n">validate_date</span><span class="p">(</span><span class="n">settlement</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">freq</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Warning: Freq </span><span class="si">{</span><span class="n">freq</span><span class="si">}</span><span class="s2"> invalid. Assumed Semi-Annual (2).&quot;</span><span class="p">)</span>
-        <span class="n">freq</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (pandas.DataFrame, str) if successful. The DataFrame contains</span>
+<span class="sd">               security details (CUSIP, Price, Yield), and the string is the</span>
+<span class="sd">               official &quot;Prices For&quot; date stamp from the site.</span>
+<span class="sd">        tuple: (str, None) if the request fails or no data is found for the date</span>
+<span class="sd">                (attempt to fetch current day before 1:00 PM ET).</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">coupon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">coupon</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">coupon</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">ValueError</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Coupon must be a positive number.&quot;</span><span class="p">)</span>
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; from datetime import date</span>
+<span class="sd">        &gt;&gt;&gt; df, stamp = FEDInvest(date(2025, 3, 17))</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">bs4</span><span class="w"> </span><span class="kn">import</span> <span class="n">BeautifulSoup</span>
+  <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+  <span class="kn">from</span><span class="w"> </span><span class="nn">dateutil.relativedelta</span><span class="w"> </span><span class="kn">import</span> <span class="n">relativedelta</span>
 
-    <span class="c1"># Find the Correct Coupon Period</span>
-    <span class="c1"># Get all the bond&#39;s payment dates</span>
-    <span class="n">pay_dates</span> <span class="o">=</span> <span class="n">scheduled_pay_dates</span><span class="p">(</span><span class="n">maturity</span><span class="p">,</span> <span class="n">settlement</span><span class="o">=</span><span class="n">settlement</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">)</span>
- 
-    <span class="c1"># Should sorted but check</span>
-    <span class="n">pay_dates</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-    
-    <span class="c1"># The first date after the settlement date is the next coupon date</span>
-    <span class="n">next_coupon</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">pay_dates</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="n">settlement</span><span class="p">:</span>
-            <span class="n">next_coupon</span> <span class="o">=</span> <span class="n">d</span>
-            <span class="k">break</span>
-            
-    <span class="c1"># Handle case where bond has matured</span>
-    <span class="k">if</span> <span class="n">next_coupon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mf">0.0</span>
+  <span class="c1"># check for date or datetime</span>
+  <span class="n">validate_date</span><span class="p">(</span><span class="n">price_date</span><span class="p">)</span>
 
-    <span class="c1">#Calculate Previous Coupon Date</span>
-    <span class="n">num_months</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">12</span> <span class="o">//</span> <span class="n">freq</span><span class="p">)</span>
-    <span class="n">prev_coupon</span> <span class="o">=</span> <span class="n">next_coupon</span> <span class="o">-</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=</span><span class="n">num_months</span><span class="p">)</span>
+  <span class="c1"># make share date of prices and settlement date are settlement dates</span>
+  <span class="n">price_date</span><span class="o">=</span><span class="n">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">price_date</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">price_date</span> <span class="o">&gt;</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;price_date is in the future&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+  
+  <span class="n">settlement_date</span><span class="o">=</span><span class="n">price_date</span><span class="o">+</span><span class="n">relativedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">settlement_date</span><span class="o">=</span><span class="n">adjust_bond_pay_dates</span><span class="p">(</span><span class="n">settlement_date</span><span class="p">)</span>
 
-    <span class="c1"># Check for Month End adjustment on the calculated previous date</span>
-    <span class="n">is_next_month_end</span> <span class="o">=</span> <span class="n">next_coupon</span><span class="o">.</span><span class="n">day</span> <span class="o">==</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">maturity</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">maturity</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    
-    <span class="k">if</span> <span class="n">is_next_month_end</span><span class="p">:</span>
-        <span class="n">last_day_of_prev_month</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">monthrange</span><span class="p">(</span><span class="n">prev_coupon</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">prev_coupon</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">prev_coupon</span> <span class="o">=</span> <span class="n">date</span><span class="p">(</span><span class="n">prev_coupon</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">prev_coupon</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">last_day_of_prev_month</span><span class="p">)</span>
+  <span class="c1"># URL address of Treasury Direct Select A Date</span>
+  <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://treasurydirect.gov/GA-FI/FedInvest/selectSecurityPriceDate&quot;</span>
 
-    <span class="c1"># In Python date math, (Settlement - Prev) automatically excludes the end date, </span>
-    <span class="c1"># which correctly represents &quot;days held&quot;.</span>
+  <span class="c1"># Standard headers to look like a real browser</span>
+  <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;User-Agent&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36</span><span class="se">\</span>
+<span class="s2">     (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span>
+  <span class="p">}</span>
 
-    <span class="n">accrued_value</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="c1">#  variable names and type identified from inspecting url</span>
+  <span class="n">month</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">price_date</span><span class="o">.</span><span class="n">month</span><span class="p">)</span>
+  <span class="n">day</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">price_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span>
+  <span class="n">year</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">price_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">day_type</span> <span class="o">==</span> <span class="s1">&#39;Actual/Actual&#39;</span><span class="p">:</span>
-        <span class="n">days_since_last</span> <span class="o">=</span> <span class="p">(</span><span class="n">settlement</span> <span class="o">-</span> <span class="n">prev_coupon</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
-        <span class="n">days_between</span> <span class="o">=</span> <span class="p">(</span><span class="n">next_coupon</span> <span class="o">-</span> <span class="n">prev_coupon</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
-        <span class="c1"># Formula: Coupon/Freq * (DaysHeld / DaysInPeriod)</span>
-        <span class="n">accrued_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">coupon</span> <span class="o">/</span> <span class="n">freq</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">days_since_last</span> <span class="o">/</span> <span class="n">days_between</span><span class="p">)</span>
+  <span class="c1"># payload passed in request post</span>
+  <span class="n">payload</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;priceDate.month&#39;</span><span class="p">:</span><span class="n">month</span><span class="p">,</span>
+           <span class="s1">&#39;priceDate.day&#39;</span><span class="p">:</span><span class="n">day</span><span class="p">,</span>
+           <span class="s1">&#39;priceDate.year&#39;</span><span class="p">:</span><span class="n">year</span><span class="p">,</span>
+           <span class="s2">&quot;submit&quot;</span><span class="p">:</span> <span class="s2">&quot;Show Prices&quot;</span><span class="p">}</span>
 
-    <span class="k">elif</span> <span class="n">day_type</span> <span class="o">==</span> <span class="s1">&#39;30/360&#39;</span><span class="p">:</span>
-        <span class="n">days_since_last</span> <span class="o">=</span> <span class="n">_days_30_360</span><span class="p">(</span><span class="n">prev_coupon</span><span class="p">,</span> <span class="n">settlement</span><span class="p">)</span>
-        <span class="c1"># Formula: Coupon * (Days360 / 360)</span>
-        <span class="n">accrued_value</span> <span class="o">=</span> <span class="n">coupon</span> <span class="o">*</span> <span class="p">(</span><span class="n">days_since_last</span> <span class="o">/</span> <span class="mf">360.0</span><span class="p">)</span>
+  <span class="c1"># fires off form and returns prices for date</span>
+  <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+  <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Connection Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">None</span>
 
-    <span class="k">elif</span> <span class="n">day_type</span> <span class="o">==</span> <span class="s1">&#39;Actual/360&#39;</span><span class="p">:</span>
-        <span class="n">days_since_last</span> <span class="o">=</span> <span class="p">(</span><span class="n">settlement</span> <span class="o">-</span> <span class="n">prev_coupon</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
-        <span class="n">accrued_value</span> <span class="o">=</span> <span class="n">coupon</span> <span class="o">*</span> <span class="p">(</span><span class="n">days_since_last</span> <span class="o">/</span> <span class="mf">360.0</span><span class="p">)</span>
+  <span class="c1"># reads the html</span>
 
-    <span class="k">elif</span> <span class="n">day_type</span> <span class="o">==</span> <span class="s1">&#39;Actual/365&#39;</span><span class="p">:</span>
-        <span class="n">days_since_last</span> <span class="o">=</span> <span class="p">(</span><span class="n">settlement</span> <span class="o">-</span> <span class="n">prev_coupon</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
-        <span class="n">accrued_value</span> <span class="o">=</span> <span class="n">coupon</span> <span class="o">*</span> <span class="p">(</span><span class="n">days_since_last</span> <span class="o">/</span> <span class="mf">365.0</span><span class="p">)</span>
-        
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Fallback</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚠️ Warning: Unknown day_type </span><span class="si">{</span><span class="n">day_type</span><span class="si">}</span><span class="s2">. Using Actual/Actual.&quot;</span><span class="p">)</span>
-        <span class="n">days_since_last</span> <span class="o">=</span> <span class="p">(</span><span class="n">settlement</span> <span class="o">-</span> <span class="n">prev_coupon</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
-        <span class="n">days_between</span> <span class="o">=</span> <span class="p">(</span><span class="n">next_coupon</span> <span class="o">-</span> <span class="n">prev_coupon</span><span class="p">)</span><span class="o">.</span><span class="n">days</span>
-        <span class="n">accrued_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">coupon</span> <span class="o">/</span> <span class="n">freq</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">days_since_last</span> <span class="o">/</span> <span class="n">days_between</span><span class="p">)</span>
+  <span class="n">tables</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="n">match</span><span class="o">=</span><span class="s1">&#39;CUSIP&#39;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">accrued_value</span>
-
-<span class="o">~~~</span>
+  <span class="c1"># from inspection there is a single table</span>
+  <span class="k">return</span> <span class="n">tables</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">price_date</span><span class="p">,</span><span class="n">settlement_date</span>
+<span class="o">~~~</span> 
 </pre></div>
 </div>
 </section>
@@ -536,22 +507,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="save_results.html"
+       href="calc_convexity.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">save_results is a helper function that asks users if they wish to save files created by <em>Financial Python</em>.</p>
+        <p class="prev-next-title">calc_convexity helper function</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="create_workbook.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">create_workbook is a helper function that creates Excel workbooks from DataFrames created by <em>Financial Python</em>.</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
